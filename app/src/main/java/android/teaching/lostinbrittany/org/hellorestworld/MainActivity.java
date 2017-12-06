@@ -46,6 +46,11 @@ public class MainActivity extends AppCompatActivity {
         protected String doInBackground(String... strings) {
             Log.d("HelloAsyncTask", "doInBackground begin");
             // SystemClock.sleep(5000);
+
+            boolean networkAvailable = NetworkHelper.isInternetAvailable(getApplicationContext());
+            Log.d("Available network?", Boolean.toString(networkAvailable));
+            if (!networkAvailable) { return null; }
+
             String result = NetworkHelper.callHello(strings[0]);
             Log.d("HelloAsyncTask", "doInBackground end");
             return result;
